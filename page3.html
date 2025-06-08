@@ -1,22 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="assets/yaya.png" />
-    <title>Specialforyayaaa - Stopwatch</title>
+    <title>Specialforyayaaa - Ucapan</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
       body {
         font-family: "Mali", cursive;
-        background: url("assets/12.webp") no-repeat center center fixed;
+        background: url("assets/3.webp") no-repeat center center fixed;
         background-size: cover;
         min-height: 100vh;
         overflow-x: hidden;
@@ -26,6 +26,7 @@
         box-shadow: 0 8px 20px rgba(139, 147, 255, 0.6);
       }
 
+      /* Animasi confetti sederhana */
       .confetti {
         position: fixed;
         width: 10px;
@@ -36,7 +37,6 @@
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
-
       @keyframes fall {
         0% {
           transform: translateY(0) rotate(0deg);
@@ -46,16 +46,27 @@
         }
       }
 
+      /* Animasi hover zoom yang smooth untuk card */
+      .hover-zoom {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      .hover-zoom:hover {
+        transform: scale(1.05);
+      }
+
+      /* Style audio controls hidden */
       #audioPlayer {
         display: none;
       }
 
-      /* Stopwatch Animasi */
-      .digits {
-        letter-spacing: 0.1em;
-      }
-      .glow {
-        text-shadow: 0 0 10px #ff90bc, 0 0 20px #fff7fc;
+      /* Typewriter text */
+      #typewriterText {
+        min-height: 1.5rem;
+        white-space: pre-wrap;
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: #ff90bc;
       }
     </style>
 
@@ -96,55 +107,40 @@
         <h4
           class="text-4xl sm:text-6xl font-extrabold text-bluesoft drop-shadow-lg mb-4 sm:mb-6"
         >
-          How long have we been together?
+          Did you know?
         </h4>
       </div>
 
-      <!-- Stopwatch -->
       <div
         data-aos="fade-up"
-        data-aos-duration="800"
-        data-aos-delay="500"
-        class="bg-putihpink border-2 border-bluesoft shadow-blue rounded-3xl p-6 sm:p-8 flex flex-col items-center space-y-6 hover-zoom"
+        data-aos-duration="700"
+        data-aos-delay="600"
+        class="max-w-md mx-auto mb-8 sm:mb-10"
       >
         <div
-          id="stopwatch"
-          class="text-5xl sm:text-6xl font-bold text-pinksoft glow digits"
+          class="shadow-blue bg-putihpink rounded-3xl p-6 sm:p-8 hover-zoom select-none border-2 border-bluesoft"
         >
-          0 hari 00:00:00
-        </div>
-        <div class="flex space-x-4">
-          <button
-            id="startStopBtn"
-            class="bg-bluesoft text-putihpink px-5 py-2 rounded-full font-bold shadow-lg hover:bg-pinksoft transition duration-300"
-          >
-            Pause
-          </button>
-          <button
-            id="resetBtn"
-            class="bg-pinksoft text-white px-5 py-2 rounded-full font-bold shadow-lg hover:bg-bluesoft transition duration-300"
-          >
-            Reset
-          </button>
+          <p id="typewriterText"></p>
         </div>
       </div>
 
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
-        data-aos-delay="800"
-        class="flex justify-center mt-8"
+        data-aos-delay="900"
+        data-aos-anchor-placement="bottom-bottom"
+        class="flex justify-center"
       >
         <button
-          onclick="location.href='page13.html'"
+          onclick="location.href='page4.html'"
           class="bg-bluesoft text-putihpink font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full shadow-lg hover:bg-pinksoft transition duration-300 flex items-center gap-2 sm:gap-3 hover:scale-105 hover:shadow-[0_0_15px_4px_rgba(255,144,188,0.6)]"
         >
-          lasttt
+          the answer....
         </button>
       </div>
     </div>
 
-    <audio id="audioPlayer" preload="auto">
+    <audio id="audioPlayer" preload="metadata">
       <source
         src="assets/Last Night on Earth - Green Day.mp3"
         type="audio/mpeg"
@@ -162,89 +158,20 @@
     </script>
 
     <script>
-      // Stopwatch realtime dari tanggal tetap dengan pause/resume
+      // Typewriter effect
+      const text = `What makes june truly special?`;
 
-      const stopwatchDisplay = document.getElementById("stopwatch");
-      const startStopBtn = document.getElementById("startStopBtn");
-      const resetBtn = document.getElementById("resetBtn");
-
-      const startDate = new Date("2024-03-13T00:00:00").getTime();
-
-      let intervalId = null;
-      let isPaused = false;
-      let pausedAt = 0; // total milidetik saat pause
-
-      function updateDisplay() {
-        if (isPaused) return;
-
-        const now = Date.now();
-        const diffMs = now - startDate - pausedAt;
-
-        // Gunakan Math.ceil agar hari sudah termasuk hari saat ini dihitung penuh
-        const days = Math.ceil(diffMs / (1000 * 3600 * 24));
-        let remainder = diffMs % (1000 * 3600 * 24);
-        const hours = Math.floor(remainder / (1000 * 3600));
-        remainder = remainder % (1000 * 3600);
-        const minutes = Math.floor(remainder / (1000 * 60));
-        remainder = remainder % (1000 * 60);
-        const seconds = Math.floor(remainder / 1000);
-
-        const hStr = String(hours).padStart(2, "0");
-        const mStr = String(minutes).padStart(2, "0");
-        const sStr = String(seconds).padStart(2, "0");
-
-        stopwatchDisplay.textContent = `${days} hari ${hStr}:${mStr}:${sStr}`;
-      }
-
-      function startTimer() {
-        if (intervalId) return; // sudah jalan
-
-        isPaused = false;
-        intervalId = setInterval(updateDisplay, 1000);
-        updateDisplay();
-        startStopBtn.textContent = "Pause";
-      }
-
-      function pauseTimer() {
-        if (!intervalId) return; // sudah pause
-
-        isPaused = true;
-        clearInterval(intervalId);
-        intervalId = null;
-        startStopBtn.textContent = "Mulai";
-
-        if (!pauseStartTime) pauseStartTime = Date.now();
-        pausedAt += Date.now() - pauseStartTime;
-        pauseStartTime = null;
-      }
-
-      let pauseStartTime = null;
-
-      startStopBtn.addEventListener("click", () => {
-        if (intervalId) {
-          pauseStartTime = Date.now();
-          pauseTimer();
-        } else {
-          if (pauseStartTime !== null) {
-            pausedAt += Date.now() - pauseStartTime;
-            pauseStartTime = null;
-          }
-          startTimer();
+      let i = 0;
+      const typewriterTextEl = document.getElementById("typewriterText");
+      function typeWriter() {
+        if (i < text.length) {
+          typewriterTextEl.innerHTML +=
+            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 40);
         }
-      });
-
-      resetBtn.addEventListener("click", () => {
-        clearInterval(intervalId);
-        intervalId = null;
-        isPaused = false;
-        pausedAt = 0;
-        pauseStartTime = null;
-        startStopBtn.textContent = "Pause";
-        updateDisplay();
-        startTimer();
-      });
-
-      startTimer();
+      }
+      typeWriter();
 
       // Audio controls
       const audio = document.getElementById("audioPlayer");
