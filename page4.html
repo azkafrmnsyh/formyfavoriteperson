@@ -1,31 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="assets/yaya.png" />
-    <title>Specialforyayaaa - Stopwatch</title>
+    <title>Specialforyayaaa - Birthday Calendar</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
       body {
         font-family: "Mali", cursive;
-        background: url("assets/12.webp") no-repeat center center fixed;
+        background: url("assets/4.webp") no-repeat center center fixed;
         background-size: cover;
         min-height: 100vh;
         overflow-x: hidden;
       }
-
       .shadow-blue {
         box-shadow: 0 8px 20px rgba(139, 147, 255, 0.6);
       }
-
       .confetti {
         position: fixed;
         width: 10px;
@@ -36,7 +32,6 @@
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
-
       @keyframes fall {
         0% {
           transform: translateY(0) rotate(0deg);
@@ -45,20 +40,24 @@
           transform: translateY(100vh) rotate(360deg);
         }
       }
-
+      .hover-zoom {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      .hover-zoom:hover {
+        transform: scale(1.05);
+      }
       #audioPlayer {
         display: none;
       }
-
-      /* Stopwatch Animasi */
-      .digits {
-        letter-spacing: 0.1em;
-      }
-      .glow {
-        text-shadow: 0 0 10px #ff90bc, 0 0 20px #fff7fc;
+      #typewriterText {
+        min-height: 5rem;
+        white-space: pre-wrap;
+        font-size: 1.125rem;
+        line-height: 1.6;
+        color: #ff90bc;
       }
     </style>
-
     <script>
       tailwind.config = {
         theme: {
@@ -93,58 +92,95 @@
 
     <div class="text-center max-w-xl mx-4 sm:mx-auto">
       <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-        <h4
+        <h1
           class="text-4xl sm:text-6xl font-extrabold text-bluesoft drop-shadow-lg mb-4 sm:mb-6"
         >
-          How long have we been together?
-        </h4>
+          Your Birthday!!!
+        </h1>
       </div>
 
-      <!-- Stopwatch -->
+      <!-- Kalender Lengkap -->
       <div
         data-aos="fade-up"
-        data-aos-duration="800"
-        data-aos-delay="500"
-        class="bg-putihpink border-2 border-bluesoft shadow-blue rounded-3xl p-6 sm:p-8 flex flex-col items-center space-y-6 hover-zoom"
+        data-aos-duration="1000"
+        data-aos-delay="700"
+        class="shadow-blue bg-putihpink rounded-3xl p-4 sm:p-6 hover-zoom select-none border-2 border-bluesoft max-w-xl mx-auto mb-8 sm:mb-10"
       >
-        <div
-          id="stopwatch"
-          class="text-5xl sm:text-6xl font-bold text-pinksoft glow digits"
-        >
-          0 hari 00:00:00
-        </div>
-        <div class="flex space-x-4">
-          <button
-            id="startStopBtn"
-            class="bg-bluesoft text-putihpink px-5 py-2 rounded-full font-bold shadow-lg hover:bg-pinksoft transition duration-300"
+        <h2 class="text-bluesoft font-semibold mb-2 text-3xl">June, 2025</h2>
+        <div class="bg-pinksoft rounded-2xl p-4">
+          <div
+            class="grid grid-cols-7 border-b border-white pb-1 mb-2 text-putihpink text-lg font-bold select-none"
           >
-            Pause
-          </button>
-          <button
-            id="resetBtn"
-            class="bg-pinksoft text-white px-5 py-2 rounded-full font-bold shadow-lg hover:bg-bluesoft transition duration-300"
+            <div class="text-center">S</div>
+            <div class="text-center">M</div>
+            <div class="text-center">T</div>
+            <div class="text-center">W</div>
+            <div class="text-center">T</div>
+            <div class="text-center">F</div>
+            <div class="text-center">S</div>
+          </div>
+          <div
+            class="grid grid-cols-7 gap-y-1 text-putihpink font-bold text-lg select-none"
           >
-            Reset
-          </button>
+            <div class="text-center">1</div>
+            <div class="text-center">2</div>
+            <div class="text-center">3</div>
+            <div class="text-center">4</div>
+            <div class="text-center">5</div>
+            <div class="text-center">6</div>
+            <div class="text-center">7</div>
+            <div class="text-center">8</div>
+            <div
+              class="text-center rounded-full bg-putihpink text-pinksoft font-bold w-7 h-7 flex items-center justify-center mx-auto"
+            >
+              9
+            </div>
+            <div class="text-center">10</div>
+            <div class="text-center">11</div>
+            <div class="text-center">12</div>
+            <div class="text-center">13</div>
+            <div class="text-center">14</div>
+            <div class="text-center">15</div>
+            <div class="text-center">16</div>
+            <div class="text-center">17</div>
+            <div class="text-center">18</div>
+            <div class="text-center">19</div>
+            <div class="text-center">20</div>
+            <div class="text-center">21</div>
+            <div class="text-center">22</div>
+            <div class="text-center">23</div>
+            <div class="text-center">24</div>
+            <div class="text-center">25</div>
+            <div class="text-center">26</div>
+            <div class="text-center">27</div>
+            <div class="text-center">28</div>
+            <div class="text-center">29</div>
+            <div class="text-center">30</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
       </div>
 
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
-        data-aos-delay="800"
-        class="flex justify-center mt-8"
+        data-aos-delay="900"
+        class="flex justify-center"
       >
         <button
-          onclick="location.href='page13.html'"
+          onclick="location.href='page5.html'"
           class="bg-bluesoft text-putihpink font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-full shadow-lg hover:bg-pinksoft transition duration-300 flex items-center gap-2 sm:gap-3 hover:scale-105 hover:shadow-[0_0_15px_4px_rgba(255,144,188,0.6)]"
         >
-          lasttt
+          lanjut wkwk
         </button>
       </div>
     </div>
 
-    <audio id="audioPlayer" preload="auto">
+    <audio id="audioPlayer" preload="metadata">
       <source
         src="assets/Last Night on Earth - Green Day.mp3"
         type="audio/mpeg"
@@ -162,114 +198,18 @@
     </script>
 
     <script>
-      // Stopwatch realtime dari tanggal tetap dengan pause/resume
-
-      const stopwatchDisplay = document.getElementById("stopwatch");
-      const startStopBtn = document.getElementById("startStopBtn");
-      const resetBtn = document.getElementById("resetBtn");
-
-      const startDate = new Date("2024-03-13T00:00:00").getTime();
-
-      let intervalId = null;
-      let isPaused = false;
-      let pausedAt = 0; // total milidetik saat pause
-
-      function updateDisplay() {
-        if (isPaused) return;
-
-        const now = Date.now();
-        const diffMs = now - startDate - pausedAt;
-
-        // Gunakan Math.ceil agar hari sudah termasuk hari saat ini dihitung penuh
-        const days = Math.ceil(diffMs / (1000 * 3600 * 24));
-        let remainder = diffMs % (1000 * 3600 * 24);
-        const hours = Math.floor(remainder / (1000 * 3600));
-        remainder = remainder % (1000 * 3600);
-        const minutes = Math.floor(remainder / (1000 * 60));
-        remainder = remainder % (1000 * 60);
-        const seconds = Math.floor(remainder / 1000);
-
-        const hStr = String(hours).padStart(2, "0");
-        const mStr = String(minutes).padStart(2, "0");
-        const sStr = String(seconds).padStart(2, "0");
-
-        stopwatchDisplay.textContent = `${days} hari ${hStr}:${mStr}:${sStr}`;
-      }
-
-      function startTimer() {
-        if (intervalId) return; // sudah jalan
-
-        isPaused = false;
-        intervalId = setInterval(updateDisplay, 1000);
-        updateDisplay();
-        startStopBtn.textContent = "Pause";
-      }
-
-      function pauseTimer() {
-        if (!intervalId) return; // sudah pause
-
-        isPaused = true;
-        clearInterval(intervalId);
-        intervalId = null;
-        startStopBtn.textContent = "Mulai";
-
-        if (!pauseStartTime) pauseStartTime = Date.now();
-        pausedAt += Date.now() - pauseStartTime;
-        pauseStartTime = null;
-      }
-
-      let pauseStartTime = null;
-
-      startStopBtn.addEventListener("click", () => {
-        if (intervalId) {
-          pauseStartTime = Date.now();
-          pauseTimer();
-        } else {
-          if (pauseStartTime !== null) {
-            pausedAt += Date.now() - pauseStartTime;
-            pauseStartTime = null;
-          }
-          startTimer();
-        }
-      });
-
-      resetBtn.addEventListener("click", () => {
-        clearInterval(intervalId);
-        intervalId = null;
-        isPaused = false;
-        pausedAt = 0;
-        pauseStartTime = null;
-        startStopBtn.textContent = "Pause";
-        updateDisplay();
-        startTimer();
-      });
-
-      startTimer();
-
-      // Audio controls
       const audio = document.getElementById("audioPlayer");
-
-      // Ambil state audio terakhir dari localStorage
       const savedTime =
         parseFloat(localStorage.getItem("audioCurrentTime")) || 0;
       const savedIsPlaying = localStorage.getItem("audioIsPlaying") === "true";
-
       audio.currentTime = savedTime;
-
-      // Jika sebelumnya audio sedang dimainkan, play otomatis
       if (savedIsPlaying) {
-        audio.play().catch(() => {
-          // Play bisa gagal jika belum interaksi user, abaikan error ini
-        });
+        audio.play().catch(() => {});
       }
-
-      // Simpan state audio secara rutin (setiap detik)
       setInterval(() => {
         localStorage.setItem("audioCurrentTime", audio.currentTime);
         localStorage.setItem("audioIsPlaying", !audio.paused);
       }, 1000);
-
-      // Juga simpan saat unload sebagai backup
       window.addEventListener("beforeunload", () => {
         localStorage.setItem("audioCurrentTime", audio.currentTime);
         localStorage.setItem("audioIsPlaying", !audio.paused);
